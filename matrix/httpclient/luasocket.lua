@@ -9,16 +9,18 @@
 local urlescape    = require "socket.url" .escape
 local stringsource = require "ltn12"      .source.string
 local tablesink    = require "ltn12"      .sink.table
+local request_https = require "ssl.https" .request
+local request_http = require "socket.http" .request
 
-local request_https = function (...)
-   request_https = require "ssl.https" .request
-   return request_https(...)
-end
+-- local request_https = function (...)
+--    request_https = require "ssl.https" .request
+--    return request_https(...)
+-- end
 
-local request_http = function (...)
-   request_http = require "socket.http" .request
-   return request_http(...)
-end
+-- local request_http = function (...)
+--    request_http = require "socket.http" .request
+--    return request_http(...)
+-- end
 
 local function make_request(t)
    if t.url:sub(1, #"https://") == "https://" then
